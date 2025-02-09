@@ -62,6 +62,8 @@ docmost:
 [...]
   storage:
     type: local
+#  s3:
+[...]
 
 persistence:
   # -- Configure persistence settings for the chart under this key.
@@ -72,7 +74,28 @@ persistence:
     accessMode: ReadWriteOnce
     size: 5Gi
 ```
-If you want to configure this storage with S3, you need to disable persistence and configure the following variables. ([Issue #2](../../issues/2))
+If you want to configure this storage with S3, you need to disable persistence and configure the following variables.
+
+Example for MinIO configuration.
+```yaml
+docmost:
+[...]
+  storage:
+    type: s3
+  s3:
+    accessKey: "docmost"
+    secretKey: "docmost"
+    region: "us-east-1"
+    bucket: "docmost"
+    endpoint: "https://minIO:9000"
+    pathStyle: true
+
+persistence:
+  # -- Configure persistence settings for the chart under this key.
+  data:
+    enabled: false
+[...]
+```
 
 ## Postgresql and Redis bitnami Charts
 Deployment of ([postgresql](https://github.com/bitnami/charts/tree/main/bitnami/postgresql)) and ([redis](https://github.com/bitnami/charts/tree/main/bitnami/redis)) is handled by Bitnami charts.

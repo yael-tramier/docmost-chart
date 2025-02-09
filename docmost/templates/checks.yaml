@@ -1,3 +1,7 @@
-{{- if and (ne .Values.docmost.storage.type "local") (.Values.persistence.data.enabled) }}
+{{- if and (eq .Values.docmost.storage.type "s3") (.Values.persistence.data.enabled) }}
 {{- fail "Deployment failed: S3 storage cannot be used with persistence.data.enabled=true. Disable persistence or change storage type." }}
+{{- end }}
+
+{{- if and (eq .Values.docmost.storage.type "local") .Values.docmost.s3 }}
+{{- fail "Deployment failed: You cannot provide values for the S3 connection if you use local storage" }}
 {{- end }}

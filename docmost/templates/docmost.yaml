@@ -7,20 +7,35 @@ env:
   {{- end }}
   {{- end }}
 
-  APP_SECRET: {{ .Values.docmost.secretKey}}
+  APP_SECRET: {{ .Values.docmost.secretKey }}
 
   {{- if .Values.postgresql.enabled }}
   {{- with .Values.postgresql }}
-  POSTGRESQL_PASSWORD:
-    secretKeyRef:
-      name: {{ $.Release.Name }}-postgresql
-      key: password
   DATABASE_URL: 'postgresql://{{ default "docmost" .auth.username }}:{{ .auth.password }}@{{ $.Release.Name }}-postgresql/{{ default "docmost" .auth.database }}?schema=public'
   {{- end }}
   {{- end }}
 
   {{- if .Values.redis.enabled }}
   REDIS_URL: 'redis://{{ $.Release.Name }}-redis-master:6379'
+  {{- end }}
+
+  STORAGE_DRIVER: {{ .Values.docmost.storage.type }}
+
+  {{- if .Values.docmost.s3 }}
+  {{- with .Values.docmost.s3 }}
+  AWS_S3_ACCESS_KEY_ID:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: accessKey
+  AWS_S3_SECRET_ACCESS_KEY:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: secretKey
+  AWS_S3_REGION: {{ .region }}
+  AWS_S3_BUCKET: {{ .bucket }}
+  AWS_S3_ENDPOINT: {{ .endpoint }}
+  AWS_S3_FORCE_PATH_STYLE: {{ .pathStyle }}
+  {{- end }}
   {{- end }}
 
 {{- end -}}
