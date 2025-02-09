@@ -34,7 +34,7 @@ ingress:
 
 # If storage type is S3, set persistence.data.enabled to false
 docmost:
-  secretKey: ""
+  appSecret: ""
   storage:
     type: local
 #  s3:
