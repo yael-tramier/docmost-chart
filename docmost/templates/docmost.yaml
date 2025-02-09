@@ -39,6 +39,29 @@ env:
   AWS_S3_FORCE_PATH_STYLE: {{ .pathStyle }}
   {{- end }}
 
+  {{- if .Values.docmost.mail.enabled }}
+  {{- with .Values.docmost.mail }}
+  MAIL_DRIVER: {{ .type }}
+  {{- if (eq .type "smtp") }}
+  SMTP_HOST: {{ .smtp.host }}
+  SMTP_PORT: {{ .smtp.port }}
+  SMTP_USERNAME:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: smtp-username
+  SMTP_PASSWORD:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: smtp-password
+  SMTP_SECURE: {{ .smtp.secure }}
+  {{- else if eq .type "postmark" }}
+  POSTMARK_TOKEN: {{ .postmark.token }}
+  {{- end }}
+  MAIL_FROM_ADDRESS: {{ .fromAddress }}
+  MAIL_FROM_NAME: {{ .fromName }}
+  {{- end }}
+  {{- end }}
+
 {{- end -}}
 {{- $_ := merge .Values (include "docmost.harcodedValues" . | fromYaml) -}}
 

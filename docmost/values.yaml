@@ -44,6 +44,19 @@ docmost:
 #    bucket: ""
 #    endpoint: ""
 #    pathStyle:
+  mail:
+    enabled: false
+    type:
+    smtp:
+      host:
+      port:
+      username:
+      password:
+      secure:
+    postmark:
+      token:
+    fromAddress:
+    fromName:
 
 persistence:
   # -- Configure persistence settings for the chart under this key.
