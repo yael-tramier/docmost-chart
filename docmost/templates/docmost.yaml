@@ -7,7 +7,10 @@ env:
   {{- end }}
   {{- end }}
 
-  APP_SECRET: {{ .Values.docmost.secretKey }}
+  APP_SECRET:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: appSecret
 
   {{- if .Values.postgresql.enabled }}
   {{- with .Values.postgresql }}

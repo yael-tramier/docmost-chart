@@ -47,7 +47,7 @@ To generate it: `openssl rand -hex 32`
 In future releases, it will no longer be necessary to fill in this field, it will be automatically generated ([Issue #1](../../issues/1)).
 ```yaml
 docmost:
-  secretKey: "5e5accb8a565a5e1302d0d1f6933a2f95a176142b4759165e6dcc40418a1e4ae" #(example)
+  appSecret: "5e5accb8a565a5e1302d0d1f6933a2f95a176142b4759165e6dcc40418a1e4ae" #(example)
 ```
 
 ### Docmost storage
