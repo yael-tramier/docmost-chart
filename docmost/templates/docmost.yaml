@@ -24,7 +24,6 @@ env:
 
   STORAGE_DRIVER: {{ .Values.docmost.storage.type }}
 
-  {{- if .Values.docmost.s3 }}
   {{- with .Values.docmost.s3 }}
   AWS_S3_ACCESS_KEY_ID:
     secretKeyRef:
@@ -38,6 +37,28 @@ env:
   AWS_S3_BUCKET: {{ .bucket }}
   AWS_S3_ENDPOINT: {{ .endpoint }}
   AWS_S3_FORCE_PATH_STYLE: {{ .pathStyle }}
+  {{- end }}
+
+  {{- if .Values.docmost.mail.enabled }}
+  {{- with .Values.docmost.mail }}
+  MAIL_DRIVER: {{ .type }}
+  {{- if (eq .type "smtp") }}
+  SMTP_HOST: {{ .smtp.host }}
+  SMTP_PORT: {{ .smtp.port }}
+  SMTP_USERNAME:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: smtp-username
+  SMTP_PASSWORD:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-app
+      key: smtp-password
+  SMTP_SECURE: {{ .smtp.secure }}
+  {{- else if eq .type "postmark" }}
+  POSTMARK_TOKEN: {{ .postmark.token }}
+  {{- end }}
+  MAIL_FROM_ADDRESS: {{ .fromAddress }}
+  MAIL_FROM_NAME: {{ .fromName }}
   {{- end }}
   {{- end }}
 

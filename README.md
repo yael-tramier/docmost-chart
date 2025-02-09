@@ -62,7 +62,7 @@ docmost:
 [...]
   storage:
     type: local
-#  s3:
+  s3:
 [...]
 
 persistence:
@@ -95,6 +95,42 @@ persistence:
   data:
     enabled: false
 [...]
+```
+
+### Docmost Mail
+2 types of emails drivers:
+  - smtp
+  - postmark
+
+#### SMTP
+```yaml
+docmost:
+[...]
+  mail:
+    enabled: true
+    type: smtp
+    smtp:
+      host:
+      port:
+      username:
+      password:
+      secure: true (if you use TLS)
+    [...]
+    fromAddress: docs.example.com
+    fromName: Docmost
+```
+#### Postmark
+```yaml
+docmost:
+[...]
+  mail:
+    enabled: true
+    type: postmark
+    [...]
+    postmark:
+      token:
+    fromAddress: docs.example.com
+    fromName: Docmost
 ```
 
 ## Postgresql and Redis Bitnami Charts
