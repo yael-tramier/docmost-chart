@@ -1,0 +1,30 @@
+{{/* Append the hardcoded settings */}}
+{{- define "docmost.harcodedValues" -}}
+env:
+  {{- with .Values.ingress.main }}
+  {{- if .enabled }}
+  APP_URL: http{{ if .tls }}s{{ end }}://{{ (first .hosts).host }}
+  {{- end }}
+  {{- end }}
+
+  APP_SECRET: {{ .Values.docmost.secretKey}}
+
+  {{- if .Values.postgresql.enabled }}
+  {{- with .Values.postgresql }}
+  POSTGRESQL_PASSWORD:
+    secretKeyRef:
+      name: {{ $.Release.Name }}-postgresql
+      key: password
+  DATABASE_URL: 'postgresql://{{ default "docmost" .auth.username }}:{{ .auth.password }}@{{ $.Release.Name }}-postgresql/{{ default "docmost" .auth.database }}?schema=public'
+  {{- end }}
+  {{- end }}
+
+  {{- if .Values.redis.enabled }}
+  REDIS_URL: 'redis://{{ $.Release.Name }}-redis-master:6379'
+  {{- end }}
+
+{{- end -}}
+{{- $_ := merge .Values (include "docmost.harcodedValues" . | fromYaml) -}}
+
+{{/* Render the templates */}}
+{{ include "bjw-s.common.loader.all" . }}
