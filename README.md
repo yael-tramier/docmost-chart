@@ -62,7 +62,7 @@ docmost:
 [...]
   storage:
     type: local
-#  s3:
+  s3:
 [...]
 
 persistence:

@@ -37,7 +37,7 @@ docmost:
   appSecret: ""
   storage:
     type: local
-#  s3:
+  s3:
 #    accessKey: ""
 #    secretKey: ""
 #    region: ""
