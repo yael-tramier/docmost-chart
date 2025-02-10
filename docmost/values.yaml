@@ -57,6 +57,9 @@ docmost:
       token:
     fromAddress:
     fromName:
+  jwtTokenExperies: ""
+  FileUploadSizeLimit: ""
+  drawioUrl: ""
 
 persistence:
   # -- Configure persistence settings for the chart under this key.

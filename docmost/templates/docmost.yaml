@@ -12,6 +12,18 @@ env:
       name: {{ $.Release.Name }}-app
       key: appSecret
 
+  {{- if .Values.docmost.jwtTokenExperies }}
+  JWT_TOKEN_EXPIRES_IN: {{ .Values.docmost.jwtTokenExperies }}
+  {{- end }}
+  
+  {{- if .Values.docmost.FileUploadSizeLimit }}
+  FILE_UPLOAD_SIZE_LIMIT: {{ .Values.docmost.FileUploadSizeLimit }}
+  {{- end }}
+
+  {{- if .Values.docmost.drawioUrl }}
+  DRAWIO_URL: {{ .Values.docmost.drawioUrl }}
+  {{- end }}
+
   {{- if .Values.postgresql.enabled }}
   {{- with .Values.postgresql }}
   DATABASE_URL: 'postgresql://{{ default "docmost" .auth.username }}:{{ .auth.password }}@{{ $.Release.Name }}-postgresql/{{ default "docmost" .auth.database }}?schema=public'
