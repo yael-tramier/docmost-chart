@@ -2,7 +2,7 @@
 {{- define "docmost.harcodedValues" -}}
 env:
   {{- with .Values.ingress.main }}
-  {{- if .enabled }}
+  {{- if and .enabled (hasKey (first .hosts) "host") }}
   APP_URL: http{{ if .tls }}s{{ end }}://{{ (first .hosts).host }}
   {{- end }}
   {{- end }}
