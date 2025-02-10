@@ -25,8 +25,8 @@ env:
   {{- end }}
 
   {{- if .Values.postgresql.enabled }}
-  {{- with .Values.postgresql }}
-  DATABASE_URL: 'postgresql://{{ default "docmost" .auth.username }}:{{ .auth.password }}@{{ $.Release.Name }}-postgresql/{{ default "docmost" .auth.database }}?schema=public'
+  {{- with .Values.postgresql.auth }}
+  DATABASE_URL: 'postgresql://{{ default "docmost" .username }}:{{ .password }}@{{ $.Release.Name }}-postgresql/{{ default "docmost" .database }}?schema=public'
   {{- end }}
   {{- end }}
 
