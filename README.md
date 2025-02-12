@@ -18,7 +18,10 @@ This Helm chart allows deploying ([**Docmost**](https://docmost.com/)) on a Kube
 
 ## Chart Installation
 
-### OCI (TODO)
+```bash
+helm repo add docmost https://yael-tramier.github.io/docmost-chart
+helm install docmost docmost/docmost
+```
 
 ## Configuration
 
