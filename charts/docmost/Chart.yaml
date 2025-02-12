@@ -7,6 +7,9 @@ sources:
   - https://github.com/docmost/docmost
 maintainers:
   - name: Yaël Tramier
+kubeVersion: ">=1.22.0-0"
+keywords:
+  - docmost
 dependencies:
   - name: common
     repository: https://bjw-s.github.io/helm-charts
