@@ -3,10 +3,10 @@ dependencies:
   repository: https://bjw-s.github.io/helm-charts
   version: 1.5.1
 - name: postgresql
-  repository: oci://registry-1.docker.io/bitnamicharts
+  repository: https://charts.bitnami.com/bitnami
   version: 16.4.6
 - name: redis
-  repository: oci://registry-1.docker.io/bitnamicharts
+  repository: https://charts.bitnami.com/bitnami
   version: 20.6.3
-digest: sha256:30b33d2dbc0b967b285064dbff51fbdf8b00baf1c1ac6c23a0c9cfd98d3e3c38
-generated: "2025-02-08T16:23:40.830442121+01:00"
+digest: sha256:45fe3c92b60832706fce44c362c691337257d6e4969e4caafb90955bf1538bee
+generated: "2025-02-12T09:43:27.2540032+01:00"

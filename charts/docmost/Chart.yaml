@@ -13,12 +13,12 @@ dependencies:
     version: 1.5.1
   # https://github.com/bitnami/charts/blob/main/bitnami/postgresql
   - name: postgresql
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: https://charts.bitnami.com/bitnami
     version: 16.4.6
     condition: postgresql.enabled
   # https://github.com/bitnami/charts/blob/main/bitnami/redis/Chart.yaml
   - name: redis
-    repository: oci://registry-1.docker.io/bitnamicharts
+    repository: https://charts.bitnami.com/bitnami
     version: 20.6.3
     condition: redis.enabled
 # A chart can be either an 'application' or a 'library' chart.
