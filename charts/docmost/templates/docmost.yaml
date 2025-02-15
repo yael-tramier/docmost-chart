@@ -42,6 +42,7 @@ env:
 
   STORAGE_DRIVER: {{ .Values.docmost.storage.type }}
 
+  {{- if (eq .Values.docmost.storage.type "s3") }}
   {{- with .Values.docmost.s3 }}
   AWS_S3_ACCESS_KEY_ID:
     secretKeyRef:
@@ -55,6 +56,7 @@ env:
   AWS_S3_BUCKET: {{ .bucket }}
   AWS_S3_ENDPOINT: {{ .endpoint }}
   AWS_S3_FORCE_PATH_STYLE: {{ .pathStyle }}
+  {{- end }}
   {{- end }}
 
   {{- if .Values.docmost.mail.enabled }}
