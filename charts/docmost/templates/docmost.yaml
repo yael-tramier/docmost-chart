@@ -82,6 +82,14 @@ env:
   {{- end }}
   {{- end }}
 
+initContainers:
+  wait-for-postgres:
+    image: bitnami/postgresql:{{ .Values.postgresql.image.tag }}
+    command: ['sh', '-c', 'until pg_isready -U "{{ .Values.postgresql.auth.username }}" -d "dbname={{ .Values.postgresql.auth.database }}" -h {{ $.Release.Name }}-postgresql -p 5432; do echo waiting for postgres; sleep 2; done;']
+  wait-for-redis:
+    image: bitnami/redis:{{ .Values.redis.image.tag }}
+    command: ['sh', '-c', 'until redis-cli -h {{ $.Release.Name }}-redis-master ping | grep PONG; do echo waiting for redis; sleep 2; done;']
+
 {{- end -}}
 {{- $_ := merge .Values (include "docmost.harcodedValues" . | fromYaml) -}}
 
