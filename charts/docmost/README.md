@@ -45,9 +45,12 @@ ingress:
 ### Docmost secretKey
 **Mandatory** for Docmost launch !
 
-To generate it: `openssl rand -hex 32`
+If you leave the field empty, a token of size 64 will be automatically generated and stored in a secret.
 
-In future releases, it will no longer be necessary to fill in this field, it will be automatically generated ([Issue #1](../../issues/1)).
+Otherwise, you can generate your token and store the value in the value.yaml file.
+
+To generate it: `openssl rand -hex 64` (min 32).
+
 ```yaml
 docmost:
   appSecret: "5e5accb8a565a5e1302d0d1f6933a2f95a176142b4759165e6dcc40418a1e4ae" (example)
