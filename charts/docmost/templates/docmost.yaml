@@ -90,6 +90,31 @@ initContainers:
     image: bitnami/redis:{{ .Values.redis.image.tag }}
     command: ['sh', '-c', 'until redis-cli -h {{ $.Release.Name }}-redis-master ping | grep PONG; do echo waiting for redis; sleep 2; done;']
 
+probes:
+  liveness: &probes
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /api/health
+        port: http
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+  readiness: *probes
+  startup:
+    enabled: true
+    custom: true
+    spec:
+      httpGet:
+        path: /api/health
+        port: http
+      initialDelaySeconds: 0
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 30
+
 {{- end -}}
 {{- $_ := merge .Values (include "docmost.harcodedValues" . | fromYaml) -}}
 
