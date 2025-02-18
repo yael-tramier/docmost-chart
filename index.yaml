@@ -2,6 +2,37 @@ apiVersion: v1
 entries:
   docmost:
   - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2025-02-18T16:21:52.824537432Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts
+      version: 1.5.1
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.4.6
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.6.3
+    description: A chart to power Docmost running on kubernetes
+    digest: 04a3f9ee17c6ab040f717a436a592bb2c9089e4be6b0636adbe63c787c0c782d
+    home: https://docmost.com/
+    icon: https://raw.githubusercontent.com/docmost/docs/refs/heads/main/static/img/logo.svg
+    keywords:
+    - docmost
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: Yaël Tramier
+    name: docmost
+    sources:
+    - https://github.com/docmost/docmost
+    type: application
+    urls:
+    - https://github.com/yael-tramier/docmost-chart/releases/download/docmost-0.4.2/docmost-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v2
     appVersion: 0.7.0
     created: "2025-02-18T16:16:43.536481022Z"
     dependencies:
@@ -277,4 +308,4 @@ entries:
     urls:
     - https://github.com/yael-tramier/docmost-chart/releases/download/docmost-0.1.0/docmost-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-18T16:16:43.536510357Z"
+generated: "2025-02-18T16:21:52.824567357Z"
