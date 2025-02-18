@@ -1,3 +1,7 @@
 {{- if and (eq .Values.docmost.storage.type "s3") (.Values.persistence.data.enabled) }}
 {{- fail "Deployment failed: S3 storage cannot be used with persistence.data.enabled=true. Disable persistence or change storage type." }}
 {{- end }}
+
+{{- if not (regexMatch "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$" .Values.docmost.mail.fromAddress) }}
+{{- fail "Deployment failed: Invalid email address format for the fromAddress variable !" }}
+{{- end }}

@@ -122,7 +122,7 @@ docmost:
       password:
       secure: true (if you use TLS)
     [...]
-    fromAddress: docs.example.com
+    fromAddress: docmost@example.com
     fromName: Docmost
 ```
 #### Postmark

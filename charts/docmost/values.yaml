@@ -55,8 +55,8 @@ docmost:
       secure:
     postmark:
       token:
-    fromAddress:
-    fromName:
+    fromAddress: ""
+    fromName: ""
   jwtTokenExperies: ""
   FileUploadSizeLimit: ""
   drawioUrl: ""
